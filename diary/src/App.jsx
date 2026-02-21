@@ -1,7 +1,10 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Component, useState } from 'react'
+import styled from styled-components
 import './App.css'
+
+const Description = styled.p`
+  color: #888;
+`
 
 function Logo(props) {
   const style = {
@@ -30,9 +33,9 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
-      <p className="read-the-docs">
+      <Description>
         Click on the Vite and React logos to learn more
-      </p>
+      </Description>
     </>
   )
 }
