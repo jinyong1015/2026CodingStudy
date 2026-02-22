@@ -1,5 +1,5 @@
 import { Component, useState } from 'react'
-import styled from styled-components
+import styled from 'styled-components';
 import './App.css'
 
 const Description = styled.p`
