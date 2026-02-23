@@ -1,43 +1,44 @@
-import { Component, useState } from 'react'
-import styled from 'styled-components';
-import './App.css'
+import { useState } from 'react'
 
-const Description = styled.p`
-  color: #888;
-`
+const App = () => {
+  const today = new Date();
+  const [pickDay, setPickDay] = useState(0);
+  const [year, setYear] = useState(today.getFullYear());
+  const [month, setMonth] = useState(today.getMonth() + 1);
 
-function Logo(props) {
-  const style = {
-    color : props.color
+  const calendar = buildCalendarData(year, month);
+
+  const onGoToday = () => {
+    setYear(today.getFullYear())
+    setMonth(today.getMonth() + 1)
   }
-  return(
-    <div>
-      <h1 style={style}>{props.title}</h1>
-    </div>
-  )
-}
 
-function App() {
-  const [count, setCount] = useState(0)
+  const onChangeMonth = (direction) => {
+    if (direction === 'prev') {
+      if (month === 1) {
+        setYear(year - 1)
+        setMonth(12)
+      } else {
+        setMonth(month - 1)
+      }
+    } else {
+      if (month === 12) {
+        setYear(year + 1)
+        setMonth(1)
+      } else {
+        setMonth(month + 1)
+      }
+    }
+  }
+
+  const onSelectDay = (day) => {
+    setPickDay(day)
+  }
+
 
   return (
-    <>
-      <Logo title = "props test" color ="blue"/>
-      <Logo title = "props test2"/>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <Description>
-        Click on the Vite and React logos to learn more
-      </Description>
-    </>
+    <div></div>
   )
 }
 
-export default App
+export default App;
