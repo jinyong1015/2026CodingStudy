@@ -12,17 +12,16 @@ import Maxims from './components/Maxims'
 import { buildCalendarData } from './utils/buildCalendarData'
 
 const App = () => {
-  const today = new Date()
-  const [pickDay, setPickDay] = useState(0)
-  const [year, setYear] = useState(today.getFullYear())
-  const [month, setMonth] = useState(today.getMonth() + 1)
-
-  const calendar = buildCalendarData(year, month)  
+  const today = new Date() // 오늘 날짜 만들기 
+  const [pickDay, setPickDay] = useState(0) // 선택된 날짜 상태 
+  const [year, setYear] = useState(today.getFullYear()) // 현재 년도 상태 
+  const [month, setMonth] = useState(today.getMonth() + 1) // 현재 월 상태
+  const calendar = buildCalendarData(year, month) // 달력 데이터 생성
 
   const onGoToday = () => {
     setYear(today.getFullYear())
     setMonth(today.getMonth() + 1)
-  }
+  } // 오늘 버튼 함수
 
   const onChangeMonth = (direction) => {
     if (direction === 'prev') {
@@ -40,11 +39,11 @@ const App = () => {
         setMonth(month + 1)
       }
     }
-  }
+  } /* direction 값에 따라 이전 달 또는 다음 달로 이동하는 함수 */
 
   const onSelectDay = (day) => {
     setPickDay(day)
-  }
+  } /* 달력에서 날짜를 클릭했을 때 실행되는 함수 */
 
   return (
     <Container>
