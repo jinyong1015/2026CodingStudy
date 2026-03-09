@@ -63,7 +63,7 @@ const App = () => {
             ? <Calendar data={calendar} year={year} month={month} onSelectDay={onSelectDay} />
             : <DiaryForm 
                 date={`${year}-${String(month).padStart(2, '0')}-${String(pickDay).padStart(2, '0')}`} 
-                onCancel={() => setPickDay(0)}
+                onCancel={() => setPickDay(0)} // onCancel 함수가 실해되면 setPickDay 값이 0이 됨.  그러면 pickDay === 0 , <DiaryForm />
               />
         }
       </CardContainer>
