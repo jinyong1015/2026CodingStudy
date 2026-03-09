@@ -9,32 +9,33 @@ import { addDiaryArticle, updateDiaryArticle } from './store/database'
 import './DiaryForm.css'
 
 const DiaryForm = ({ date, onCancel }) => {
-  const diaryArticle = useDiary(date)
-  const [text, setText] = useState('')
-  const [isNew, setNew] = useState(true)
-  const [isModalOpen, setModalOpen] = useState(false)
+  const diaryArticle = useDiary(date) // 해당 날짜 일기 가져오기 
+  const [text, setText] = useState('') // 일기내용
+  const [isNew, setNew] = useState(true) // 새글인지 여부
+  const [isModalOpen, setModalOpen] = useState(false) // 모달상태
 
   useEffect(() => {
     if (diaryArticle) {
       setNew(false)
       setText(diaryArticle.article)
     }
-  }, [diaryArticle])
+  }, [diaryArticle]) 
+  // diaryArticle 값이 바뀌면 useEffect 실행
 
   const onCloseModal = () => {
     setModalOpen(false)
-  }
+  } // 모달 닫는 함수
 
-  const onSave = async () => {
-    if (text.trim() === '') return
+  const onSave = async () => { // 저장 함수
+    if (text.trim() === '') return // 빈 글 검사 
   
-    const now = new Date()
+    const now = new Date() // 현재 시간 구하기
     const hours = String(now.getHours()).padStart(2, '0')
     const minutes = String(now.getMinutes()).padStart(2, '0')
     
     try {
-      const time = `${hours}:${minutes}`
-      const article = text
+      const time = `${hours}:${minutes}` // 저장 로직
+      const article = text // 일기 내용
 
       if (isNew) {
         await addDiaryArticle({ date, time, article })
